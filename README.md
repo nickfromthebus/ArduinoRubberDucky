@@ -19,5 +19,4 @@ or deleted with a little creativity.
 
 This script is not perfect by any means, however it does get the job done *most* of the time. Please use this and all malicious scripts onl against targets for which
 you have permission to attack, or for educational uses only. Feel free to use this script wholly, or in part, or make modifications to suit your needs, all I ask is
-that the comment section stating "Original Windows 11 Disable Defender script by Nicholas Noussias" be maintained and Note whether "Used as-is" or "Edited or adopted
-to suit the needs of _____________" or something along those lines... you get the idea
+that the commented line stating "Original Windows 11 Disable Defender script by Nicholas Noussias" or whatever it says is maintained. you get the idea
